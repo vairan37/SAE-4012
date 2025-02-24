@@ -32,17 +32,18 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Liste des clients</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
-        <a href="formulaire.php">Retour au formulaire</a>
+        <a id="retour" href="formulaire.php">Retour au formulaire</a>
 
-        <form method="POST">
-            <div>
-                <label for="searchTerm">Rechercher par nom ou prénom:</label>
-                <input type="text" id="searchTerm" name="searchTerm" required>
-            </div>
+        <form id="recherche" method="POST">
+            <section>
+                <label for="searchTerm" hidden>Rechercher par nom ou prénom</label>
+                <input type="text" id="searchTerm" placeholder="Rechercher par nom ou prénom" name="searchTerm" required>
+            </section>
             <button type="submit">Rechercher</button>
         </form>
 
