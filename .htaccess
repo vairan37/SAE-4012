@@ -1,0 +1,19 @@
+# Activer le moteur de réécriture
+RewriteEngine On
+
+# Définir l'URL de base pour les réécritures
+RewriteBase /SAE-4012/
+
+# Si le fichier demandé n'existe pas
+RewriteCond %{REQUEST_FILENAME} !-f
+# Si le répertoire demandé n'existe pas
+RewriteCond %{REQUEST_FILENAME} !-d
+# Rediriger toutes les requêtes vers index.php
+# QSA: Conserve les paramètres de la requête
+# L: Dernière règle - arrête le traitement si celle-ci correspond
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Définir la page d'index par défaut comme formulaire.php
+DirectoryIndex formulaire.php
+# Désactiver l'affichage du contenu des répertoires pour la sécurité
+Options -Indexes
