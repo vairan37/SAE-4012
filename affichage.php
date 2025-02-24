@@ -4,7 +4,7 @@ require_once 'connection.php';
 $searchResults = [];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $searchTerm = filter_input(INPUT_POST, 'searchTerm', FILTER_SANITIZE_STRING);
-    
+
     try {
         $sql = "SELECT * FROM clients WHERE nom LIKE :search OR prenom LIKE :search";
         $stmt = $conn->prepare($sql);
@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ':search' => $searchTerm . '%'
         ]);
         $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
 }
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 try {
     $stmt = $conn->query("SELECT * FROM clients");
     $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch(PDOException $e) {
+} catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
     $clients = [];
 }
@@ -28,14 +28,16 @@ try {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Liste des clients</title>
 </head>
+
 <body>
     <div class="container">
         <a href="formulaire.php">Retour au formulaire</a>
-        
+
         <form method="POST">
             <div>
                 <label for="searchTerm">Rechercher par nom ou prénom:</label>
@@ -55,7 +57,7 @@ try {
             </thead>
             <tbody>
                 <?php if (isset($_POST['searchTerm']) && !empty($searchResults)): ?>
-                    <?php foreach($searchResults as $client): ?>
+                    <?php foreach ($searchResults as $client): ?>
                         <tr>
                             <td><?= htmlspecialchars($client['nom']) ?></td>
                             <td><?= htmlspecialchars($client['prenom']) ?></td>
@@ -64,7 +66,7 @@ try {
                         </tr>
                     <?php endforeach; ?>
                 <?php elseif (!isset($_POST['searchTerm'])): ?>
-                    <?php foreach($clients as $client): ?>
+                    <?php foreach ($clients as $client): ?>
                         <tr>
                             <td><?= htmlspecialchars($client['nom']) ?></td>
                             <td><?= htmlspecialchars($client['prenom']) ?></td>
@@ -77,4 +79,5 @@ try {
         </table>
     </div>
 </body>
+
 </html>

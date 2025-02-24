@@ -1,0 +1,18 @@
+body {
+    background-color: #EAFFCD;
+    display: flex;
+    width: 100vh;
+    height: 100vh;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: solid #dcdcdc;
+    border-radius: 20px;
+    background-color: #f4ffe4;
+    padding: 2vw;
+    width: 30vw;
+}
