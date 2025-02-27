@@ -37,7 +37,7 @@ try {
 
 <body>
     <div class="container">
-        <a id="retour" href="formulaire.php">Retour au formulaire</a>
+        <a id="retour" href="index.php">Retour au formulaire</a>
 
         <form id="recherche" method="POST">
             <section>
