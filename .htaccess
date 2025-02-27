@@ -1,17 +1,17 @@
 Options +FollowSymLinks
 RewriteEngine On
+Options -Indexes
 
-# Allow access to all files
-<Directory "/Applications/XAMPP/xamppfiles/htdocs/SAE 4012/SAE-4012">
-    Options Indexes FollowSymLinks MultiViews
-    AllowOverride All
-    Require all granted
-</Directory>
+# Basic security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
 
-# PHP files handling
-<FilesMatch "\.php$">
-    Require all granted
-</FilesMatch>
+# Allow PHP execution
+<Files *.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
 
-# Default index file
 DirectoryIndex index.php
