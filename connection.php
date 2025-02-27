@@ -1,5 +1,5 @@
 <?php
-$servername = "mysql-388232-db.alwaysdata.net"; 
+$servername = "mysql-wikimimihamster.alwaysdata.net"; 
 $username = "388232";
 $password = "nathanvictor1";
 $dbname = "wikimimihamster_admin";
