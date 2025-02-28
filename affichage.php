@@ -3,7 +3,7 @@ require_once 'connection.php';
 
 $searchResults = [];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $searchTerm = filter_input(INPUT_POST, 'searchTerm', FILTER_SANITIZE_STRING);
+    $searchTerm = htmlspecialchars($_POST['searchTerm'] ?? '');
 
     try {
         $sql = "SELECT * FROM clients WHERE nom LIKE :search OR prenom LIKE :search";
