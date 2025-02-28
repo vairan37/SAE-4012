@@ -2,10 +2,11 @@
 require_once 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
-    $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_STRING);
+    // Utilisation de htmlspecialchars au lieu de FILTER_SANITIZE_STRING
+    $nom = htmlspecialchars($_POST['nom'] ?? '');
+    $prenom = htmlspecialchars($_POST['prenom'] ?? '');
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $telephone = filter_input(INPUT_POST, 'telephone', FILTER_SANITIZE_STRING);
+    $telephone = htmlspecialchars($_POST['telephone'] ?? '');
 
     $valid = true;
     if (!preg_match("/^[a-zA-Z-' ]*$/", $nom)) {
@@ -49,12 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <title>Inscription</title>
+    <title>Formulaire</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Connection</h1>
+    <h1>Formulaire</h1>
     <form method="POST">
         <div class="form-group">
             <!-- <label for="nom">Nom</label><br> -->
