@@ -9,13 +9,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telephone = htmlspecialchars($_POST['telephone'] ?? '');
 
     $valid = true;
-    if (!preg_match("/^[a-zA-Z-' ]*$/", $nom)) {
+    if (!preg_match("/^[a-zA-ZÀ-ÿ\-' ]*$/u", $nom)) {
         $valid = false;
-        $nomErr = "Veuillez utiliser que des lettres et des espaces";
+        $nomErr = "Seuls les lettres, les accents, les tirets et les espaces sont autorisés";
     }
-    if (!preg_match("/^[a-zA-Z-' ]*$/", $prenom)) {
+    
+    if (!preg_match("/^[a-zA-ZÀ-ÿ\-' ]*$/u", $prenom)) {
         $valid = false;
-        $prenomErr = "Veuillez utiliser que des lettres et des espaces";
+        $prenomErr = "Seuls les lettres, les accents, les tirets et les espaces sont autorisés";
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $valid = false;
